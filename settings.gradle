@@ -1,0 +1,4 @@
+include 'frontend-service',
+	'user-service',
+	'eureka-service',
+	'zipkin-service'

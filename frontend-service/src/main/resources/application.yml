@@ -1,0 +1,35 @@
+server:
+  port: ${PORT:8080}
+  
+logging:
+  level:
+    org.springframework.web: 'DEBUG'
+
+spring:
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+  sleuth:
+    sampler:
+      percentage: 1.0
+  
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+      
+ribbon:
+  ReadTimeout: 5000
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 3000
+
+zuul:
+  routes:
+    user-service: 
+      service-id: user-service
+      path: '/user-service/**'
+  ignored-services: '*'
+  prefix: /rest
+feign.hystrix.enabled: false
